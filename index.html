@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Računko — Izdajanje računov za s.p.</title>
+    <link rel="stylesheet" href="src/styles/main.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand__badge">R</span>
+          <div>
+            <h1>Računko</h1>
+            <p>Moderno izdajanje računov</p>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-list__item nav-list__item--active">Nov račun</button>
+          <button class="nav-list__item" disabled>Seznam računov (kmalu)</button>
+          <button class="nav-list__item" disabled>Nastavitve (kmalu)</button>
+        </nav>
+
+        <section class="sidebar__tip">
+          <h2>Namig</h2>
+          <p>
+            Vnesi svoje podatke in podatke stranke. Postavke lahko dodajaš, urejaš in
+            brišeš, nato pa račun izvoziš kot PDF (demo preko print).
+          </p>
+        </section>
+      </aside>
+
+      <main class="content">
+        <header class="page-header">
+          <div>
+            <h2>Ustvari račun</h2>
+            <p>Prijazen, čist in modularen vmesnik za samostojne podjetnike.</p>
+          </div>
+          <button id="save-draft" class="button button--secondary">Shrani osnutek</button>
+        </header>
+
+        <section class="grid two-cols">
+          <article class="card" id="invoice-meta"></article>
+          <article class="card" id="party-details"></article>
+        </section>
+
+        <section class="card" id="line-items"></section>
+
+        <section class="grid two-cols">
+          <article class="card" id="notes"></article>
+          <article class="card" id="summary"></article>
+        </section>
+      </main>
+    </div>
+
+    <template id="line-item-template">
+      <tr>
+        <td><input type="text" name="description" placeholder="Opis storitve" required /></td>
+        <td><input type="number" name="quantity" min="1" value="1" required /></td>
+        <td><input type="number" name="unitPrice" min="0" step="0.01" value="0.00" required /></td>
+        <td>
+          <select name="vatRate">
+            <option value="22">22%</option>
+            <option value="9.5">9.5%</option>
+            <option value="0">0%</option>
+          </select>
+        </td>
+        <td class="line-total">0,00 €</td>
+        <td>
+          <button type="button" class="icon-button" data-action="remove">✕</button>
+        </td>
+      </tr>
+    </template>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
